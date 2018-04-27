@@ -17,13 +17,15 @@ const readFileArrayAsync = (fileArray, currentIndex, callback) => {
 
   try {
     return fileReader(currentFilePath, (error, data) => {
-      if (error) logger.log(logger.ERROR, error);
-      
+      if (error) {
+        logger.log(logger.ERROR, error);
+      }
       resultsArray.push(data);
       readFileArrayAsync(fileArray, currentIndex + 1, callback);
     });
   } catch (error) {
     logger.log(logger.ERROR, error);
+    callback(error);
   }
   return undefined;
 };

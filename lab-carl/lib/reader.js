@@ -6,7 +6,7 @@ module.exports = (path, callback) =>
   fs.readFile(
     path,
     (error, dataBuffer) => {
-      if (error) throw error;
+      if (error) return callback(error);
       return callback(null, dataBuffer.toString('utf8'));
     },
   );
